@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>🌸Para Sunny🌸</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('Imagenes/FondoRosa.png');
+      background-size: cover;
+      background-position: center;
+      font-family: sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .centro {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 2;
+    }
+
+    .content-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .side-image {
+      width: 100px;
+      height: auto;
+      animation: flotar 3s ease-in-out infinite;
+    }
+
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .image-button {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      box-shadow: 0 0 25px 8px #ff69b4;
+      border-radius: 20px;
+      position: relative;
+      animation: palpitar 1.8s ease-in-out infinite;
+    }
+
+    @keyframes palpitar {
+      0%, 100% { transform: scale(1); }
+      25%, 75% { transform: scale(1.05); }
+      50% { transform: scale(1); }
+    }
+
+    .image-button img {
+      width: 160px;
+      transition: transform 0.3s ease;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .image-button:hover img {
+      transform: scale(1.1);
+      animation: vibrar 0.3s infinite;
+    }
+
+    @keyframes vibrar {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(2deg); }
+      50% { transform: rotate(-2deg); }
+      75% { transform: rotate(2deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .sobre-contenedor {
+      position: relative;
+    }
+
+    .sobre-contenedor:hover .tooltip,
+    .sobre-contenedor:hover .leyenda {
+      opacity: 1;
+    }
+
+    .tooltip {
+      position: absolute;
+      bottom: -70px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 240, 245, 0.9);
+      border: 1px solid #ffb6c1;
+      padding: 12px 18px;
+      border-radius: 15px;
+      font-family: 'Dancing Script', cursive;
+      font-size: 24px;
+      color: #d63384;
+      text-shadow: 1px 1px 3px #ffc0cb;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      z-index: 3;
+    }
+
+    .leyenda {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Dancing Script', cursive;
+      font-size: 26px;
+      color: #d63384;
+      text-shadow: 1px 1px 3px #ffc0cb;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .estrellita {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      pointer-events: none;
+      animation: flotarEstrella 6s ease-in-out infinite;
+      opacity: 0.9;
+      z-index: 0;
+    }
+
+    @keyframes flotarEstrella {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+
+    .floating-wrapper {
+      position: absolute;
+      z-index: 1;
+      transform-origin: center;
+    }
+
+    .tiradefotos-wrapper {
+      top: 7%;
+      left: 15%;
+      transform: rotate(-10deg);
+    }
+
+    .yo-wrapper {
+      top: 10%;
+      right: 5%;
+      transform: rotate(8deg);
+    }
+
+    .el-wrapper {
+      bottom: 0%;
+      right: 17%;
+      transform: rotate(-6deg);
+    }
+
+    .floating-item {
+      animation: flotar 4s ease-in-out infinite;
+      opacity: 0.95;
+      width: 180px;
+      height: auto;
+    }
+
+    .yo-wrapper .floating-item,
+    .el-wrapper .floating-item {
+      width: 300px;
+    }
+
+    /* 🌟 Ventana emergente */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .carta-container {
+      position: relative;
+    }
+
+    .carta-container img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #fff;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      background: #fff;
+      border: 2px solid #ff69b4;
+      color: #ff69b4;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✨ Estrellitas mágicas -->
+  <script>
+    const totalEstrellas = 60;
+    for (let i = 0; i < totalEstrellas; i++) {
+      const estrella = document.createElement('img');
+      estrella.src = 'Imagenes/estrellita.gif';
+      estrella.className = 'estrellita';
+      estrella.style.top = Math.random() * 100 + 'vh';
+      estrella.style.left = Math.random() * 100 + 'vw';
+      const size = 20 + Math.random() * 30;
+      estrella.style.width = size + 'px';
+      estrella.style.height = size + 'px';
+      estrella.style.animationDuration = 5 + Math.random() * 5 + 's';
+      document.body.appendChild(estrella);
+    }
+  </script>
+
+  <!-- 🌸 Imágenes decorativas flotantes -->
+  <div class="floating-wrapper tiradefotos-wrapper">
+    <img src="Imagenes/tiradefotos.png" alt="Tira de fotos" class="floating-item" />
+  </div>
+  <div class="floating-wrapper yo-wrapper">
+    <img src="Imagenes/yo.png" alt="Yo" class="floating-item" />
+  </div>
+  <div class="floating-wrapper el-wrapper">
+    <img src="Imagenes/el.png" alt="Él" class="floating-item" />
+  </div>
+
+  <!-- 💌 Contenido central -->
+  <div class="centro">
+    <div class="content-wrapper">
+      <img src="Imagenes/pochaco.png" alt="Pochaco" class="side-image" />
+      <div class="sobre-contenedor">
+        <button class="image-button" onclick="mostrarCarta()">
+          <img src="Imagenes/Sobre.png" alt="Sobre" />
+        </button>
+        <div class="tooltip">El sol que ilumina mi vida</div>
+        <div class="leyenda">Para el niño más precioso</div>
+      </div>
+      <img src="Imagenes/melody.png" alt="Melody" class="side-image" />
+    </div>
+  </div>
+
+  <!-- 💖 Ventana emergente de la carta -->
+  <div class="overlay" id="overlay">
+    <div class="carta-container">
+      <button class="close-btn" onclick="cerrarCarta()">×</button>
+      <img src="Imagenes/carta.png" alt="Carta" />
+    </div>
+  </div>
+
+  <script>
+    function mostrarCarta() {
+      document.getElementById("overlay").style.display = "flex";
+    }
+
+    function cerrarCarta() {
+      document.getElementById("overlay").style.display = "none";
+    }
+  </script>
+</body>
+</html>
